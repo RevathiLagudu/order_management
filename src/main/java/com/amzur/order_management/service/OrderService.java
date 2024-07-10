@@ -8,8 +8,11 @@ import com.amzur.order_management.dto.response.OrderResponse;
 public interface OrderService{
 	
 	public OrderResponse createOrder(OrderRequest orderRequest);
-    public List<OrderResponse> findAll();
+    public List<OrderResponse>  getAllOrders();
    public  OrderResponse findByOrderId(Long orderId);
     public void deleteByOrderId(Long orderId);
+    public List<OrderResponse>getByUserId(Long userId);
+	
+	
 
 }

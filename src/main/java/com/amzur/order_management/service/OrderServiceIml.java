@@ -47,21 +47,34 @@ public class OrderServiceIml implements OrderService{
 	}
 
 	@Override
-	public List<OrderResponse> findAll() {
-		// TODO Auto-generated method stub
+	public List<OrderResponse>  getAllOrders() {
+		return orderRepository. findAll().stream().map(this::convertEntityToResponse).collect(Collectors.toList());
+	}
+
+	@Override
+	
+	public OrderResponse findByOrderId(Long orderId) {
 		return null;
 	}
 
 	@Override
-	public OrderResponse findByOrderId(Long orderId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
+	public List<OrderResponse>getByUserId(Long userId){
+		    return orderRepository.getByUserId(userId).stream().map(this::convertEntityToResponse).collect(Collectors.toList());
+	 }
+
 
 	@Override
 	public void deleteByOrderId(Long orderId) {
 		// TODO Auto-generated method stub
 		
 	}
-
+	
+	public OrderResponse convertEntityToResponse(OrderEntity orderEntity) {
+		OrderResponse orderResponse = new OrderResponse();
+		BeanUtils.copyProperties(orderEntity, orderResponse);
+		return orderResponse;
+	}
+	
+	
 }
